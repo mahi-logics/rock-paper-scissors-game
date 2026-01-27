@@ -1,16 +1,32 @@
-const score = {
-    win: 0,
-    lose: 0,
-    tie: 0
+let score = JSON.parse(localStorage.getItem('scoreData')) || {
+        win: 0,
+        lose: 0,
+        tie: 0
 };
+    
+
+updateScore();
+
+// if (!score) {
+//     score = {
+//         win: 0,
+//         lose: 0,
+//         tie: 0
+//     }
+// }
 
 function reset() {
     score.win = 0;
     score.lose = 0;
     score.tie = 0;
+
+    // localStorage.setItem('scoreData', JSON.stringify(score));
+
+    localStorage.removeItem('scoreData');
+
+    updateScore();
+
 }
-
-
 
 
 function player(playerMove) {
@@ -67,9 +83,22 @@ function player(playerMove) {
         };
     }
 
+
+    localStorage.setItem('scoreData', JSON.stringify(score));
+
     
-        alert(`You picked ${playerMove}. Computer picked ${computer}. ${result} \n Win: ${score.win} Lose: ${score.lose} Tie: ${score.tie}`);
+    // alert(`You picked ${playerMove}. Computer picked ${computer}. ${result} \n Win: ${score.win} Lose: ${score.lose} Tie: ${score.tie}`);
+    
+    document.querySelector('.js-result').innerHTML = result;
+    
+    document.querySelector('.js-details').innerHTML = `You ${playerMove} - ${computer} Computer`;
+
+    updateScore();
 };
+
+function updateScore() {
+    document.querySelector('.js-score').innerHTML = `Wins: ${score.win}, Losses: ${score.lose}, Ties: ${score.tie}`;
+}
 
 
 
