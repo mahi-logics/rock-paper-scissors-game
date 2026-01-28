@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h3>Rock Paper Scissors</h3>
-    <button onclick="player('rock')">Rock</button>
-    <button onclick="player('paper')">Paper</button>
-    <button onclick="player('scissors')">Scissors</button>
     
-    <p class="js-result"></p>
-    <p class="js-details"></p>
-    <p class="js-score"></p>
-
-    <button onclick="reset()">Reset</button>
+    <main>
+        <h3>Rock Paper Scissors</h3>
+        <button onclick="player('rock')" class="imog-button js-rock"><img src="image/rock-emoji.png" alt=""
+                class="imog"></button>
+        <button onclick="player('paper')" class="imog-button js-paper"><img src="image/paper-emoji.png" alt=""
+                class="imog"></button>
+        <button onclick="player('scissors')" class="imog-button js-scissors"><img src="image/scissors-emoji.png" alt=""
+                class="imog"></button>
+        
+        <p class="js-result"></p>
+        <p class="js-details"></p>
+        <p class="js-score"></p>
+        
+        <button class="reset" onclick="reset()">Reset</button>
+    </main>
 
 
 

@@ -32,6 +32,7 @@ function reset() {
 function player(playerMove) {
     const computer = computerMove();
     let result = '';
+
     
     if (playerMove === 'rock') {
         switch (computer) {
@@ -44,7 +45,7 @@ function player(playerMove) {
                 score.lose++;
                 break;
             case 'scissors':
-                result = "You won.";
+                result = "You won!";
                 score.win++;
                 break;
         };
@@ -53,7 +54,7 @@ function player(playerMove) {
 
         switch (computer) {
             case 'rock':
-                result = "You won.";
+                result = "You won!";
                 score.win++;
                 break;
             case 'paper':
@@ -73,7 +74,7 @@ function player(playerMove) {
                 score.lose++;
                 break;
             case 'paper':
-                result = "You won.";
+                result = "You won!";
                 score.win++;
                 break;
             case 'scissors':
@@ -87,11 +88,30 @@ function player(playerMove) {
     localStorage.setItem('scoreData', JSON.stringify(score));
 
     
+    
     // alert(`You picked ${playerMove}. Computer picked ${computer}. ${result} \n Win: ${score.win} Lose: ${score.lose} Tie: ${score.tie}`);
     
     document.querySelector('.js-result').innerHTML = result;
     
-    document.querySelector('.js-details').innerHTML = `You ${playerMove} - ${computer} Computer`;
+    switch (result) {
+        case 'You won!':
+            document.querySelector('.js-result').classList.add('green');
+            document.querySelector('.js-result').classList.remove('red', 'yellow');
+            break;
+        case 'You lost!':
+            document.querySelector('.js-result').classList.add('red');
+            document.querySelector('.js-result').classList.remove('green', 'yellow');
+            break;
+        case 'Tie.':
+            document.querySelector('.js-result').classList.add('yellow');
+            document.querySelector('.js-result').classList.remove('red', 'green');
+            break;
+    }
+
+    document.querySelector('.js-details').innerHTML = `You 
+    <img src="image/${playerMove}-emoji.png" alt="" class="imog"> - 
+    <img src="image/${computer}-emoji.png" alt="" class="imog"> 
+    Computer`;
 
     updateScore();
 };
